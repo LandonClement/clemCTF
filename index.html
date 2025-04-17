@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cyber Quest CTF</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        body { font-family: monospace; background: #1a1a1a; color: #0f0; }
+        .level { display: none; margin: 10% auto; width: 70%; text-align: center; }
+        input { padding: 10px; margin: 10px; background: #333; color: #0f0; }
+        img { max-width: 500px; border: 2px solid #0f0; }
+        #level1 { display: block; }
+    </style>
+</head>
+<body>
+
+
+    <!-- Level 1: Base64 Decoding -->
+    <div class="level" id="level1" style="display: block;">
+        <h2>LEVEL 1: Base64 Decode</h2>
+        <p>Decode this base64 string to find the password:</p>
+        <pre style="color:#00ffea;font-size:1.2em;">U1RBUlRfQ1RGejEyMw==</pre>
+        <form onsubmit="checkPassword(event, 1)">
+            <input type="password" placeholder="FLAG{...}" required>
+            <input type="submit" value="Submit">
+        </form>
+        <p>Hint: Try an online base64 decoder or <code>echo ... | base64 -d</code></p>
+    </div>
+
+    <!-- Level 2: Caesar Cipher (ROT13) -->
+    <div class="level" id="level2">
+        <h2>LEVEL 2: Caesar Cipher (ROT13)</h2>
+        <p>Decrypt this ROT13 string to find the password:</p>
+        <pre style="color:#00ffea;font-size:1.2em;">FGRG_GBG13_ebg13</pre>
+        <form onsubmit="checkPassword(event, 2)">
+            <input type="password" placeholder="FLAG{...}" required>
+            <input type="submit" value="Submit">
+        </form>
+        <p>Hint: Use a ROT13 decoder or <code>tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></p>
+    </div>
+
+    <!-- Level 3: Hexadecimal to ASCII -->
+    <div class="level" id="level3">
+        <h2>LEVEL 3: Hexadecimal to ASCII</h2>
+        <p>Convert this hex string to ASCII to find the password:</p>
+        <pre style="color:#00ffea;font-size:1.2em;">43 54 46 5F 68 65 78 5F 6C 33 76 33 6C</pre>
+        <form onsubmit="checkPassword(event, 3)">
+            <input type="password" placeholder="FLAG{...}" required>
+            <input type="submit" value="Submit">
+        </form>
+        <p>Hint: Try an online hex-to-ASCII converter or <code>echo 43 54 46 5F 68 65 78 5F 6C 33 76 33 6C | xxd -r -p</code></p>
+    </div>
+
+    <!-- Level 4: Atbash Cipher -->
+    <div class="level" id="level4">
+        <h2>LEVEL 4: Atbash Cipher</h2>
+        <p>Decrypt this Atbash cipher string to find the password:</p>
+        <pre style="color:#00ffea;font-size:1.2em;">ZGVIRMT_XLFMW</pre>
+        <form onsubmit="checkPassword(event, 4)">
+            <input type="password" placeholder="FLAG{...}" required>
+            <input type="submit" value="Submit">
+        </form>
+        <p>Hint: Atbash cipher (A ↔ Z, B ↔ Y, ...). Try an online Atbash decoder!</p>
+    </div>
+
+    <script>
+        function checkPassword(e, level) {
+            e.preventDefault();
+            const input = e.target.querySelector('input[type="password"]').value;
+            let valid = false;
+
+            switch(level) {
+                case 1:
+                    // Level 1: Base64 Decoding
+                    valid = input === 'START_CTFz123';
+                    break;
+                case 2:
+                    // Level 2: ROT13
+                    valid = input === 'STCT_TOT13_rot13';
+                    break;
+                case 3:
+                    // Level 3: Hexadecimal to ASCII
+                    valid = input === 'CTF_hex_l3v3l';
+                    break;
+                case 4:
+                    // Level 4: Atbash Cipher
+                    valid = input === 'WATCHING_CODES';
+                    break;
+            }
+
+            if(valid) {
+                document.getElementById(`level${level}`).style.display = 'none';
+                if(level < 4) {
+                    document.getElementById(`level${level+1}`).style.display = 'block';
+                } else {
+                    alert('CONGRATULATIONS! You completed all levels!');
+                }
+            } else {
+                alert('Wrong answer! Keep trying!');
+            }
+        }
+    </script>
+
+</body>
+</html>
