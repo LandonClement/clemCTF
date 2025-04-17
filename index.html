@@ -14,7 +14,6 @@
 <body>
 
 
-    <!-- Level 1: Base64 Decoding -->
     <div class="level" id="level1" style="display: block;">
         <h2>LEVEL 1: Base64 Decode</h2>
         <p>Decode this base64 string to find the password:</p>
@@ -26,7 +25,7 @@
         <p>Hint: Try an online base64 decoder or <code>echo ... | base64 -d</code></p>
     </div>
 
-    <!-- Level 2: Caesar Cipher (ROT13) -->
+    
     <div class="level" id="level2">
         <h2>LEVEL 2: Caesar Cipher (ROT13)</h2>
         <p>Decrypt this ROT13 string to find the password:</p>
@@ -38,7 +37,7 @@
         <p>Hint: Use a ROT13 decoder or <code>tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></p>
     </div>
 
-    <!-- Level 3: Hexadecimal to ASCII -->
+
     <div class="level" id="level3">
         <h2>LEVEL 3: Hexadecimal to ASCII</h2>
         <p>Convert this hex string to ASCII to find the password:</p>
@@ -50,7 +49,7 @@
         <p>Hint: Try an online hex-to-ASCII converter or <code>echo 43 54 46 5F 68 65 78 5F 6C 33 76 33 6C | xxd -r -p</code></p>
     </div>
 
-    <!-- Level 4: Atbash Cipher -->
+
     <div class="level" id="level4">
         <h2>LEVEL 4: Atbash Cipher</h2>
         <p>Decrypt this Atbash cipher string to find the password:</p>
@@ -70,19 +69,15 @@
 
             switch(level) {
                 case 1:
-                    // Level 1: Base64 Decoding
                     valid = input === 'START_CTFz123';
                     break;
                 case 2:
-                    // Level 2: ROT13
                     valid = input === 'STCT_TOT13_rot13';
                     break;
                 case 3:
-                    // Level 3: Hexadecimal to ASCII
                     valid = input === 'CTF_hex_l3v3l';
                     break;
                 case 4:
-                    // Level 4: Atbash Cipher
                     valid = input === 'WATCHING_CODES';
                     break;
             }
